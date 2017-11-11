@@ -13,7 +13,7 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     viewStyle: {
-        backgroundColor: '#F8F8F8',
+        backgroundColor: '#e23d75',
         // To align vertically
         justifyContent: 'center',
         // To align horizontally
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         position: 'relative'
     },
     textStyle: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#f4f1f2'
     }
 });
 
