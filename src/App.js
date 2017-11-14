@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 import { Spinner, Header } from './components/common';
 import axios from 'axios';
-import Product from './components/Product'
+import Product from './components/Product';
+import { StackNavigator } from 'react-navigation';
+import SingleProductView from './components/SingleProductView';
 
-class App extends Component {
+class HomeScreen extends Component {
+    static navigationOptions = {
+        header: null
+    };
     state = {
         dataLoaded: null,
         products: [],
@@ -30,7 +35,7 @@ class App extends Component {
         if (this.state.dataLoaded) {
             return(
                 <ScrollView>
-                    { this.state.products.map( (product, i) => <Product key = { i } product = { product } />) }
+                    { this.state.products.map( (product, i) => <Product key = { i } product = { product } navigation = { this.props.navigation } />) }
                 </ScrollView>
             );
         }
@@ -48,6 +53,35 @@ class App extends Component {
                 { this.switchComponents() }
             </View>
         );
+    }
+}
+
+// Single product screen
+
+class SingleProduct extends Component {
+    static navigationOptions = {
+        title: 'Back'
+    };
+    render() {
+        console.log('Inside second screen', );
+        const { params } = this.props.navigation.state;
+        return(
+            <View>
+                <SingleProductView product = { params.product } />
+            </View>
+
+        );
+    }
+}
+
+const MainNav = StackNavigator({
+    Home: { screen: HomeScreen },
+    Single: {screen: SingleProduct }
+});
+
+class App extends Component {
+    render() {
+        return <MainNav />
     }
 }
 
