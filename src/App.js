@@ -76,7 +76,12 @@ class SingleProduct extends Component {
 
 const MainNav = StackNavigator({
     Home: { screen: HomeScreen },
-    Single: {screen: SingleProduct }
+    Single: {
+        screen: SingleProduct,
+        navigationOptions: {
+            header: null
+        }
+    }
 });
 
 class App extends Component {
